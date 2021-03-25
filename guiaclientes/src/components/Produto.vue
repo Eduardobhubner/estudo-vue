@@ -1,31 +1,29 @@
 <template>
   <div>
+
+    <!-- <input type="text" v-model="produto.nome"> -->
     <h3>Produto</h3>
-    <label for="input-nome">nome:</label>
-    <input type="text" id="input-nome" v-model="nome" />
-    <br> 
-    <label for="input-descricao">Descrição:</label>
-    <input type="text" id="input-descricao" v-model="descricao" />
-    <hr/>
-    <p>Nome do produto: {{ nome }}</p>
-    <p>Descrição do produto: {{ descricao }}</p>
+    <p><b>Nome do produto:</b>{{ produto.nome }}</p>
+    <p><b>Descrição do produto:</b> {{ produto.descricao }}</p>
+    <p v-if="mostraValid === true"><b>Validade do produto:</b>{{ produto.validade }}</p>
+    <p v-else><b> não contem validade!</b></p>
+
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      nome: "Coca-Cola",
-      descricao: "bebida destinada ao publico livre",
-    };
+
+  props: {
+    mostraValid: Boolean,
+    produto: Object,
   },
 };
 </script>
 
 <style scoped>
 div {
-  margin: 200px 500px;
+  margin: 100px 500px;
   background-color: rosybrown;
   width: 500px;
   height: 300px;
@@ -34,7 +32,7 @@ div {
   padding: 30px;
 }
 
-h3{
+h3 {
   color: pink;
   font-size: 30px;
 }
