@@ -3,12 +3,10 @@
     <h3>Produto</h3>
     <p><b>Nome do produto:</b>{{ produto.nome }}</p>
     <p><b>Descrição do produto:</b> {{ produto.descricao }}</p>
-    <p v-if="mostraValid === true">
-      <b>Validade do produto:</b>{{ produto.validade }}
-    </p>
-    <p v-else><b> não contem validade!</b></p>
-    <button @click="mudaCor">Mudar Cor</button>
-    <br>
+    <p><b>Validade do produto:</b>{{ produto.validade }}</p>
+    <br/>
+    <button @click="mudaCor($event)">Mudar Cor</button>
+    <br/>
     <button @click="meExcluir">Excluir</button>
   </div>
 </template>
@@ -22,7 +20,6 @@ export default {
   },
 
   props: {
-    mostraValid: Boolean,
     produto: Object,
   },
 
@@ -30,13 +27,13 @@ export default {
     mudaCor: function(){
       this.isPremiun = !this.isPremiun;
     },
-
-    // meExcluir: function(){
-    //   console.log("quero ser excluido");
-    //   this.$emit("meDelete",{idDaFruta: this.fruta.id})
-    // }
+    meExcluir: function(){
+      // informando ao elemento pai atraves de event que o filho quer ser deletado, pode passar dados como um objeto
+      this.$emit("meDelete", {component:this, idFrutaDelete:this.produto.id})
+    }
   }
 };
+
 </script>
 
 <style scoped>
@@ -67,4 +64,16 @@ h3 {
 p {
   font-size: 20px;
 }
+
+button{
+  border-radius: 35px;
+  width: 215px;
+  height: 30px;
+  margin: 4px;
+  text-align: center;
+  align-items: center;
+  background-color: red;
+  color: #FFF;
+  }
+
 </style>
