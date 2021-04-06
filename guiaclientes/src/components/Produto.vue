@@ -1,7 +1,7 @@
 <template>
   <div :class="{ 'cliente': !isPremiun, 'cliente-premiun': isPremiun }">
     <h3>Produto</h3>
-    <p><b>Nome do produto:</b>{{ produto.nome }}</p>
+    <p><b>Nome do produto:</b>{{ produto.nome}}</p>
     <p><b>Descrição do produto:</b> {{ produto.descricao }}</p>
     <p><b>Validade do produto:</b>{{ produto.validade }}</p>
     <br/>
@@ -31,6 +31,12 @@ export default {
       // informando ao elemento pai atraves de event que o filho quer ser deletado, pode passar dados como um objeto
       this.$emit("meDelete", {component:this, idFrutaDelete:this.produto.id})
     }
+  },
+  filters:{
+    // CategoriaProduto: function(value){
+    //   // deixar o valor em letra maiusculo usando o toUpperCase();
+    //   return value();
+    // }
   }
 };
 
